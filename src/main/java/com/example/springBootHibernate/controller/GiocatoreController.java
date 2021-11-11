@@ -81,4 +81,15 @@ public class GiocatoreController {
     }
 
 
+    /*
+    da testare
+     */
+
+    @DeleteMapping(value = "deleteById/{idGiocatore}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> deleteGiocatore(@PathVariable("idGiocatore") Long idGiocatore) {
+        giocatoreService.deleteGiocatore(idGiocatore);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
 }

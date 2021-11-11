@@ -24,7 +24,7 @@ public class GiocatoreServiceImpl implements IGiocatoreService{
     @Override
     public List<Giocatore> getGiocatori(){
         List<Giocatore> list= giocatoreRepository.findAll();
-        if(!CollectionUtils.isEmpty(list)){
+        if(CollectionUtils.isEmpty(list)){
             throw new ResourceNotFoundException();
         }
         return list;
@@ -52,7 +52,10 @@ public class GiocatoreServiceImpl implements IGiocatoreService{
 
     @Override
     public void deleteGiocatore(Long id) {
+        Giocatore g= Optional.ofNullable(giocatoreRepository.getById(id))
+                .orElseThrow(ResourceNotFoundException::new);
 
+          giocatoreRepository.delete(g);
     }
 
     @Override
